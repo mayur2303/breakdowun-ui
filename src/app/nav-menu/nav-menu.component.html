@@ -1,0 +1,68 @@
+<mat-sidenav-container class="sidenav-container">
+  <mat-sidenav  #drawer class="sidenav" fixedInViewport
+      [attr.role]="(isHandset$ | async) ? 'dialog' : 'navigation'"
+      [mode]="(isHandset$ | async) ? 'over' : 'side'"
+      [opened]="isLoggedInUser && (isHandset$ | async) === false">
+    <mat-toolbar><mat-icon>business</mat-icon>&nbsp;Breakdown</mat-toolbar>
+    <mat-nav-list *ngIf="isLoggedInUser" (click)="updateCompName()">
+      <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['/dashboard']"><mat-icon>dashboard</mat-icon>&nbsp;Dashboard</a>
+      <mat-divider></mat-divider>
+        <a mat-list-item [routerLink]="['/usermanage']"><mat-icon>supervisor_account</mat-icon>&nbsp;People Management</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/sparepart']"><mat-icon>build</mat-icon>&nbsp;Spare Part Management</a>
+      <mat-divider></mat-divider>
+      <a mat-list-item [routerLink]="['/breakdown']"><mat-icon>insert_drive_file</mat-icon>&nbsp;Breakdown Slip</a>
+      <!--<a mat-list-item [matMenuTriggerFor]="templateMenu"><mat-icon>supervisor_account</mat-icon>&nbsp;People Management</a>
+      <mat-menu #templateMenu="matMenu">
+        <a mat-menu-item [routerLink]="['/editor']"><mat-icon>create</mat-icon>&nbsp;Add New User</a><mat-divider></mat-divider>
+        <a mat-menu-item [routerLink]="['/form']"><mat-icon>border_color</mat-icon>&nbsp;Manage User</a><mat-divider></mat-divider>
+        <a mat-menu-item [routerLink]="['/table']"><mat-icon>build</mat-icon>&nbsp;Manage Dynamic Field</a><mat-divider></mat-divider>
+        <a mat-menu-item [routerLink]="['/dragndrop']"><mat-icon>library_books</mat-icon>&nbsp;Manage Category</a><mat-divider></mat-divider>
+      </mat-menu>-->
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content>
+    <!--Login-->
+    <mat-toolbar color="primary">
+      <button
+        type="button"
+        aria-label="Toggle sidenav"
+        mat-icon-button
+        (click)="isLoggedInUser && drawer.toggle()"
+        *ngIf="isHandset$ | async">
+        <mat-icon *ngIf="isLoggedInUser" aria-label="Side nav toggle icon">menu</mat-icon>
+      </button>
+      <!--<span>frontend</span>-->
+      <span class="fill-remaining-space"></span>
+      <span *ngIf="isLoggedInUser"><mat-icon>account_circle</mat-icon>{{loginUserName}}</span>&nbsp;&nbsp;
+      <span style="cursor: pointer" mat-button *ngIf="isLoggedInUser" (click)="logOut()" title="Logout"><mat-icon>power_settings_new</mat-icon>Logout</span>
+    </mat-toolbar>
+    <div class="signin-content" *ngIf="!isLoggedInUser">
+      <mat-card class="mat-card-login">
+        <mat-card-header></mat-card-header>
+        <mat-card-content>
+          <form #loginForm="ngForm" (ngSubmit)="onSubmit(loginForm)">
+            <p>Please login to continue</p>
+            <mat-form-field class="full-width-input">
+              <input matInput placeholder="User" [(ngModel)]="username" name="username" required>
+            </mat-form-field>
+            <mat-form-field class="full-width-input">
+              <input matInput placeholder="Password" [(ngModel)]="password" type="password" name="password" required>
+            </mat-form-field>
+            <button mat-raised-button color="primary" type="submit">Login</button>
+          </form>
+        </mat-card-content>
+        <mat-card-footer></mat-card-footer>
+      </mat-card>
+    </div>
+    <div class="grid-container">
+      <h1 class="mat-h1">{{componentName}}</h1>
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+</mat-sidenav-container>
+
+
+
+

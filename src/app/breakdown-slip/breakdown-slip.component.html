@@ -1,0 +1,188 @@
+
+<form [formGroup]="breakDownForm" novalidate (ngSubmit)="onSubmit()">
+  <mat-card class="break-down-default-card">
+    <mat-card-header>
+      <mat-card-title><mat-icon>assignment_ind</mat-icon>Breakdown Slip</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Line Name" formControlName="lineName">
+            <mat-error *ngIf="breakDownForm.controls['lineName'].hasError('required')">
+              Line name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+
+              <input matInput [ngxMatDatetimePicker]="stpicker" placeholder="Choose a Start Time" formControlName="startTime">
+              <mat-datepicker-toggle matSuffix [for]="stpicker"></mat-datepicker-toggle>
+              <ngx-mat-datetime-picker #stpicker [showSpinners]="true" [showSeconds]="false">
+                <!-- Custom icon or text of Apply icon -->
+                <ng-template>
+                  <!-- <mat-icon>star</mat-icon> -->
+                  <span>OK</span>
+                </ng-template>
+              </ngx-mat-datetime-picker>
+
+            <mat-error *ngIf="breakDownForm.controls['startTime'].hasError('required')">
+              start Time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Machine Name" formControlName="machineName">
+            <mat-error *ngIf="breakDownForm.controls['machineName'].hasError('required')">
+              Machine Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput [ngxMatDatetimePicker]="rtpicker" placeholder="Choose a Received Time" formControlName="receivedTime">
+            <mat-datepicker-toggle matSuffix [for]="rtpicker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #rtpicker [showSpinners]="true" [showSeconds]="false">
+              <!-- Custom icon or text of Apply icon -->
+              <ng-template>
+                <!-- <mat-icon>star</mat-icon> -->
+                <span>OK</span>
+              </ng-template>
+            </ngx-mat-datetime-picker>
+            <mat-error *ngIf="breakDownForm.controls['receivedTime'].hasError('required')">
+              Received Time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Shift" formControlName="shift">
+            <mat-error *ngIf="breakDownForm.controls['shift'].hasError('required')">
+              Shift is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput [ngxMatDatetimePicker]="etpicker" placeholder="Choose a End Time" formControlName="endTime">
+            <mat-datepicker-toggle matSuffix [for]="etpicker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #etpicker [showSpinners]="true" [showSeconds]="false">
+              <!-- Custom icon or text of Apply icon -->
+              <ng-template>
+                <!-- <mat-icon>star</mat-icon> -->
+                <span>OK</span>
+              </ng-template>
+            </ngx-mat-datetime-picker>
+            <mat-error *ngIf="breakDownForm.controls['endTime'].hasError('required')">
+              End Time is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Operator Name" formControlName="operatorName">
+            <mat-error *ngIf="breakDownForm.controls['operatorName'].hasError('required')">
+              Operator Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width" appearance="fill">
+
+            <input matInput [ngxMatDatetimePicker]="picker" placeholder="Choose a date" formControlName="dateCreated" >
+            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+            <ngx-mat-datetime-picker #picker [hideTime]="true">
+            </ngx-mat-datetime-picker>
+            <mat-error *ngIf="breakDownForm.controls['dateCreated'].hasError('required')">
+              Date Created is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Maintenance Name" formControlName="maintenanceName">
+            <mat-error *ngIf="breakDownForm.controls['maintenanceName'].hasError('required')">
+              Maintenance Name is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          &nbsp;
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Problem Description" formControlName="problemDescription"></textarea>
+            <mat-error *ngIf="breakDownForm.controls['problemDescription'].hasError('required')">
+              Problem Description is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <textarea matInput placeholder="Note" formControlName="note"></textarea>
+            <mat-error *ngIf="breakDownForm.controls['note'].hasError('required')">
+              Note is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Micro Category" formControlName="microCategory">
+            <mat-error *ngIf="breakDownForm.controls['note'].hasError('required')">
+              Micro Category is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+      <div class="row">
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Used Part" formControlName="usedPart">
+            <mat-error *ngIf="breakDownForm.controls['usedPart'].hasError('required')">
+              Used Part is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+        <div class="col">
+          <mat-form-field class="full-width">
+            <input matInput placeholder="Required Part" formControlName="requiredPart">
+            <mat-error *ngIf="breakDownForm.controls['requiredPart'].hasError('required')">
+              Required Part is <strong>required</strong>
+            </mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+
+
+    </mat-card-content>
+    <mat-card-actions>
+      <button mat-raised-button color="primary" type="submit"><mat-icon>save</mat-icon>Submit</button>
+    </mat-card-actions>
+  </mat-card>
+</form>
+
